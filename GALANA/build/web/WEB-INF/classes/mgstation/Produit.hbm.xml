@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 mars 2017 15:29:29 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="mgstation.Produit" table="produit" schema="public" optimistic-lock="version">
+        <id name="idproduit" type="int">
+            <column name="idproduit" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="unite" class="mgstation.Unite" fetch="select">
+            <column name="idunite" not-null="true" />
+        </many-to-one>
+        <property name="designation" type="string">
+            <column name="designation" length="200" />
+        </property>
+        <set name="stocks" table="stock" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idproduit" not-null="true" />
+            </key>
+            <one-to-many class="mgstation.Stock" />
+        </set>
+        <set name="prixes" table="prix" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idproduit" not-null="true" />
+            </key>
+            <one-to-many class="mgstation.Prix" />
+        </set>
+    </class>
+</hibernate-mapping>

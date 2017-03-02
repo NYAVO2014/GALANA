@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 mars 2017 15:29:29 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="mgstation.Prix" table="prix" schema="public" optimistic-lock="version">
+        <id name="idprix" type="int">
+            <column name="idprix" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="produit" class="mgstation.Produit" fetch="select">
+            <column name="idproduit" not-null="true" />
+        </many-to-one>
+        <property name="prix" type="java.lang.Double">
+            <column name="prix" precision="17" scale="17" />
+        </property>
+        <property name="date" type="date">
+            <column name="date" length="13" />
+        </property>
+    </class>
+</hibernate-mapping>

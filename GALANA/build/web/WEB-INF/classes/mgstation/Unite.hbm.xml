@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 mars 2017 15:29:29 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="mgstation.Unite" table="unite" schema="public" optimistic-lock="version">
+        <id name="idunite" type="int">
+            <column name="idunite" />
+            <generator class="assigned" />
+        </id>
+        <property name="unite" type="string">
+            <column name="unite" length="3" />
+        </property>
+        <set name="produits" table="produit" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idunite" not-null="true" />
+            </key>
+            <one-to-many class="mgstation.Produit" />
+        </set>
+    </class>
+</hibernate-mapping>
